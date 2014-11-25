@@ -3,7 +3,7 @@
 Plugin Name:       Debug Notices
 Plugin URI:        https://github.com/afragen/debug-notices/
 Description:       This plugin is used for displaying specific debug data.
-Version:           0.3.2
+Version:           0.4.0
 Author:            Andy Fragen
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -40,8 +40,10 @@ function fragen_debug_notices() {
 	if ( ! empty( $post_type ) ) {
 		$script .= 'Post Type: ' . $post_type . '<br />';
 		$post_types = array( 'tribe_events', 'tribe_organizer', 'tribe_venue' );
-		$test = in_array( $wp_query->query_vars['post_type'], $post_types, true ) ? 'true' : 'false';
-		$script .= 'Category Colors Test: ' . $test . '<br />';
+		$test  = in_array( $wp_query->query_vars['post_type'], $post_types, true ) ? 'true' : 'false';
+		$test2 = in_array( $wp_query->query_vars['post_type'], $post_types, false ) ? 'true' : 'false';
+		$script .= 'Category Colors Test 1: ' . $test . '<br />';
+		$script .= 'Category Colors Test 2: ' . $test2 . '<br />';
 	}
 
 	if ( ! empty( $current_screen ) ) {
