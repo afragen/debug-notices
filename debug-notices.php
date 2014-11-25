@@ -3,7 +3,7 @@
 Plugin Name:       Debug Notices
 Plugin URI:        https://github.com/afragen/debug-notices/
 Description:       This plugin is used for displaying specific debug data.
-Version:           0.3.0
+Version:           0.3.1
 Author:            Andy Fragen
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ function fragen_debug_notices() {
 	if ( is_admin() ) {
 		$script = "<script type='text/javascript'>
 		jQuery(document).ready( function($) {
-			$('body').prepend('<br /><strong>Debug Notices</strong>";
+			$('body').prepend('<br /><strong>Debug Notices</strong><br />";
 	} else {
 		$script = "<script type='text/javascript'>
 		jQuery(document).ready( function($) {
@@ -39,11 +39,9 @@ function fragen_debug_notices() {
 	}
 	if ( ! empty( $post_type ) ) {
 		$script .= 'Post Type: ' . $post_type . '<br />';
-	}
-
-	$post_types = array( 'tribe_events', 'tribe_organizer', 'tribe_venue' );
-	if ( isset( $wp_query->query_vars['post_type'] ) && in_array( $wp_query->query_vars['post_type'], $post_types, true ) ) {
-		$script .= 'Category Colors Test: true<br />';
+		$post_types = array( 'tribe_events', 'tribe_organizer', 'tribe_venue' );
+		$test = in_array( $wp_query->query_vars['post_type'], $post_types, true );
+		$script .= 'Category Colors Test: ' . $test . '<br />';
 	}
 
 	if ( ! empty( $current_screen ) ) {
